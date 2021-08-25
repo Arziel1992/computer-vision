@@ -42,7 +42,6 @@ while True:
         cv2.circle(image, (x1, y1), 15, (255, 0, 255), cv2.FILLED)
         cv2.circle(image, (x2, y2), 15, (255, 0, 255), cv2.FILLED)
         cv2.line(image, (x1, y1), (x2, y2), (255, 0, 255), 3)
-        
 
         # Media Keys
         # Next Track
@@ -56,10 +55,10 @@ while True:
         if(length_8_12 < 50):
             # print("HELLO WORLD")
             keyboard.press(Key.media_next)
-            time.sleep(1) #more work
+            time.sleep(1)  # more work
 
         cv2.circle(image, (x3, y3), 15, (255, 0, 255), cv2.FILLED)
-        cv2.line(image, (x2, y2), (x3, y3), (255, 255, 0 ), 3)
+        cv2.line(image, (x2, y2), (x3, y3), (255, 255, 0), 3)
 
     cv2.imshow("Volume", image)
     cv2.waitKey(1)

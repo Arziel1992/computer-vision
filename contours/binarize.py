@@ -9,8 +9,7 @@ def edgeDetection(image, sigma=0.33):
     upper = int(min(255, (1.0 + sigma) * median))
     lower = int(max(0, 0.7 * median))
     upper = int(min(255, 1.3 * median))
-    edged = cv2.Canny(image, lower, upper)
-    return edged
+    return cv2.Canny(image, lower, upper)
 
 
 def thresholding(image):

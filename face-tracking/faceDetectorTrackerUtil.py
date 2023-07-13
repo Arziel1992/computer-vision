@@ -37,7 +37,7 @@ class FaceDetectorTrackor:
                 if drawBox:
                     # draw the bounding box of the face along with the associated probability
                     text = "{:.2f}%".format(confidence * 100)
-                    y = startY - 10 if startY - 10 > 10 else startY + 10
+                    y = startY - 10 if startY > 20 else startY + 10
                     cv2.rectangle(image, (startX, startY), (endX, endY), (0, 0, 255), 2)
                     cv2.putText(image, text, (startX, y), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 0, 255), 2)
 
@@ -84,10 +84,10 @@ class FaceDetectorTrackor:
             elif (currentX > lastX + 100):
                 direction = "right"  # person has moved to right as compared to last position-->move robot right
 
-            if(areaNow > areaLast + 3000):
-                direction = direction + "_backward"    #area has increased-->face has come closer to camera-->move robot backwards
-            elif(areaNow < areaLast - 3000):
-                direction = direction + "_forward"    #area has decreased-->face has moved away from camera-->move robot forward
+            if (areaNow > areaLast + 3000):
+                direction += "_backward"
+            elif (areaNow < areaLast - 3000):
+                direction += "_forward"
 
         except:
             pass

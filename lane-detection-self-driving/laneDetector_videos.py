@@ -2,8 +2,7 @@ import cv2
 import numpy as np
 
 def canyEdgeDetector(image):
-    edged = cv2.Canny(image, 50, 150)
-    return edged
+    return cv2.Canny(image, 50, 150)
 
 
 def getROI(image):
@@ -15,21 +14,20 @@ def getROI(image):
     black_image = np.zeros_like(image)
     # Put the Triangular shape on top of our Black image to create a mask
     mask = cv2.fillPoly(black_image, triangle, 255)
-    # applying mask on original image
-    masked_image = cv2.bitwise_and(image, mask)
-    return masked_image
+    return cv2.bitwise_and(image, mask)
 
 
 
 def getLines(image):
-    # lines=cv2.HoughLinesP(image,bin_size,precision,threshold,dummy 2d array--no use,minLineLength,maxLineGap)
-    # lets take bin size to be 2 pixels
-    # lets take precision to be 1 degree= pi/180 radians
-    # threshold is the votes that a bin should have to be accepted to draw a line
-    # minLineLength --the minimum length in pixels a line should have to be accepted.
-    # maxLineGap --the max gap between 2 broken line which we allow for 2 lines to be connected together.
-    lines = cv2.HoughLinesP(image, 2, np.pi / 180, 100, np.array([]), minLineLength=40, maxLineGap=5)
-    return lines
+    return cv2.HoughLinesP(
+        image,
+        2,
+        np.pi / 180,
+        100,
+        np.array([]),
+        minLineLength=40,
+        maxLineGap=5,
+    )
 
 
 #display lines over a image

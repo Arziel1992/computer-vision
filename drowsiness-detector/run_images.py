@@ -23,8 +23,7 @@ def eye_aspect_ratio(eye):
     p2_minus_p6 = dist.euclidean(eye[1], eye[5])
     p3_minus_p5 = dist.euclidean(eye[2], eye[4])
     p1_minus_p4 = dist.euclidean(eye[0], eye[3])
-    ear = (p2_minus_p6 + p3_minus_p5) / (2.0 * p1_minus_p4)
-    return ear
+    return (p2_minus_p6 + p3_minus_p5) / (2.0 * p1_minus_p4)
 
 
 image = cv2.imread("2.jpg")
@@ -51,7 +50,15 @@ for face in faces:
     cv2.drawContours(image, [leftEyeHull], -1, (255, 0, 0), 2)
     cv2.drawContours(image, [rightEyeHull], -1, (255, 0, 0), 2)
 
-    cv2.putText(image, "EAR: {}".format(round(ear, 1)), (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+    cv2.putText(
+        image,
+        f"EAR: {round(ear, 1)}",
+        (10, 30),
+        cv2.FONT_HERSHEY_SIMPLEX,
+        0.7,
+        (0, 0, 255),
+        2,
+    )
 
     if ear < MINIMUM_EAR:
         cv2.putText(image, "Drowsiness", (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
